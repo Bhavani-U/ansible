@@ -1,0 +1,13 @@
+- name: demoon loops
+  hosts: localhost
+  tasks:
+  - name: print names
+    ansible.builtin.debug:
+    msg: "Hello {{item}}"
+  loops:
+  - linux
+  - shell
+  - ansible
+
+
+
