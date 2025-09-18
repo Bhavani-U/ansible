@@ -1,0 +1,21 @@
+- name: conditions
+  hosts: web
+  become: yes
+  tasks:
+  - name: check user exists or not
+    ansible.builtin.command: id expense
+    rgister: USER
+    ignore_errors: true
+
+  - name: sai Hello
+    ansible.builtin.debug:
+      msg: "User info: {{USER}}"
+
+  - name: sai Hello
+    ansible.builtin.debug: user add expence
+    when: USER.rc != 0 #condition
+
+  - name: sai Hello
+    ansible.builtin.debug:
+      msg: "Hello"
+
