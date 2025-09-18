@@ -1,0 +1,82 @@
+- name: default value
+  hosts: localhost
+  tasks:
+  - name: print default value
+    ansible.builtin.debug:
+      msg: "Hello {{course | default('Ansible')}}"
+
+- name: upper case
+  hosts: local hosts
+  vars:
+    greeting: " Hello, Good Morning"
+  tasks:
+  - name: Convert into uppercase
+    ansible.builtin.debug:
+      msg: "{{greeting | upper}}"
+
+- name: lower case
+  hosts: local hosts
+  vars:
+    greeting: " Hello, Good Morning"
+  tasks:
+  - name: Convert into lowercase
+    ansible.builtin.debug:
+      msg: "{{greeting | lower}}"
+
+- name: remove duplicates
+  hosts: localhost
+  numbers: [1,2,3,4,4,5,5,1]
+  tasks: 
+  - name: remove duplicates
+    ansible.builtin.debug:
+      msg: "{{number | unique}}"
+
+- name: print min and max
+  hosts: localhost
+  vars:
+    ages: [25,35,65,89]
+  tasks:
+  - name: print min and max
+    ansible.builtin.debug:
+      msg: "min age: {{ages | min}}, max age: {{ages | max}}"
+
+- name: convert dictionary into items/list
+  hosts: localhost
+  vars:
+    my_dict: #this is called as dictionary or map or key/value pairs.
+      Course: Ansible
+      Trainer: Sivakumar
+      Duration: 120hrs
+  tasks:
+  - name: Before convert
+    ansible.builtin.debug:
+      msg: "Before convert: {{my_dict}}"
+  - name: After Convert
+    ansible.builtin.debug:
+      msg: "After Convert: {{my_dict | dict2items }}"
+
+
+- name: convert items/list into dictionary 
+  hosts: localhost
+  vars:
+    my_list: #this is called as dictionary or map or key/value pairs.
+    - {'key': 'Course', 'value': 'Ansible'}
+    - {'key': 'Trainer', 'value': Sivakumar}
+    - {'key': 'Duration', 'value': 120hrs}
+  tasks:
+  - name: Before convert
+    ansible.builtin.debug:
+      msg: "Before convert: {{my_list}}"
+  - name: After Convert
+    ansible.builtin.debug:
+      msg: "After Convert: {{my_list | items2dict }}"
+
+
+  
+
+
+
+  
+
+
+
