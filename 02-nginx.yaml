@@ -1,10 +1,10 @@
 - name: install and run nginx
   hosts: web
-  bocome: yes #eqal to -b in adhoc commands, getting root access
+  become: yes #eqal to -b in adhoc commands, getting root access
   tasks:
   - name: install nginx
     ansible.builtin.dnf:
-      name: nging
+      name: nginx
       state: latest
   - name: start nginx
     ansible.builtin.service:
@@ -12,3 +12,22 @@
       state: started
       enabled: yes
 
+
+# What is ansible.builtin.service?
+  # ansible.builtin.service is an Ansible module used to manage services on Linux/Unix systems.
+      # It allows you to:
+          # Start a service
+          # Stop a service
+          # Restart a service
+          # Enable or disable a service at boot
+          # Reload a service
+      # Essentially, it’s the programmatic way of doing what you’d normally do with systemctl or service on Linux.
+
+# What is ansible.builtin.dnf?
+  # ansible.builtin.dnf is an Ansible module used to manage packages on RPM-based Linux distributions that use DNF (like Fedora, CentOS 8+, Red Hat 8+, Amazon Linux 2).
+      # It allows you to:
+          # Install packages
+          # Remove packages
+          # Update packages
+          # Ensure packages are at a specific version
+      # Essentially, it’s the Ansible equivalent of dnf install, dnf remove, or dnf update.
